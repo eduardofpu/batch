@@ -7,6 +7,7 @@ import org.springframework.batch.item.ItemProcessor;
 public class PersonItemProcessor implements ItemProcessor<Person, String> {
 
 
+    //Processamento linha por linha do arquivo csv
     @Override
     public String process(Person person) throws Exception {
 

@@ -18,12 +18,14 @@ import org.springframework.core.io.FileSystemResource;
 @Configuration
 public class HelloWorldJobConfig {
 
+    //Nome da Job
     @Bean
     public Job helloWorlJob(JobBuilderFactory jobBuilders, StepBuilderFactory stepBuilders){
         return jobBuilders.get("helloWordJob")
                 .start(helloWorldStep(stepBuilders)).build();
     }
 
+    //Step
     @Bean
     public Step helloWorldStep(StepBuilderFactory stepBuilders) {
         return stepBuilders.get("helloWorldStep")
@@ -31,6 +33,7 @@ public class HelloWorldJobConfig {
                 .processor(processor()).writer(writer()).build();
     }
 
+    //Leitura do arquivo csv
     @Bean
     public FlatFileItemReader<Person> reader() {
         return new FlatFileItemReaderBuilder<Person>()
@@ -40,11 +43,13 @@ public class HelloWorldJobConfig {
                 .targetType(Person.class).build();
     }
 
+    // Processamento das linhas do arquivo csv
     @Bean
     public PersonItemProcessor processor() {
         return new PersonItemProcessor();
     }
 
+    //Escrita para o greetings.txt
     @Bean
     public FlatFileItemWriter<String> writer() {
         return new FlatFileItemWriterBuilder<String>()
