@@ -18,18 +18,18 @@ import org.springframework.core.io.FileSystemResource;
 @Configuration
 public class HelloWorldJobConfig {
 
-    //Nome da Job
+    //Nome da Job para criar o trabalho
     @Bean
     public Job helloWorlJob(JobBuilderFactory jobBuilders, StepBuilderFactory stepBuilders){
         return jobBuilders.get("helloWordJob")
                 .start(helloWorldStep(stepBuilders)).build();
     }
 
-    //Step
+    //Step diferentes itens para as etapas serem executadas
     @Bean
     public Step helloWorldStep(StepBuilderFactory stepBuilders) {
         return stepBuilders.get("helloWorldStep")
-                .<Person, String>chunk(10).reader(reader())
+                .<Person, String>chunk(10).reader(reader()) // chunk numero de itens que são processados
                 .processor(processor()).writer(writer()).build();
     }
 

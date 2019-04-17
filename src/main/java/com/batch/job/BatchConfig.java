@@ -5,8 +5,9 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
+//Essa classe ira configurar o Spring Batch
 @Configuration
-@EnableBatchProcessing
+@EnableBatchProcessing //Ativa todos os recursos necessários do Spring Batch
 public class BatchConfig extends DefaultBatchConfigurer {
 
     @Override
